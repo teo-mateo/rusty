@@ -1,8 +1,9 @@
-mod algorithms_1_rnd;
-use algorithms_1_rnd::*;
+mod recipes;
+
+use recipes::algorithms_1_rnd::*;
 
 fn main() {
-   algorithms_1_rnd::cook_1_random_numbers();
+    cook_1_random_numbers();
     cook_2_random_numbers_within_range();
     cook_2_random_bool();
     cook_2_roll_the_dice();

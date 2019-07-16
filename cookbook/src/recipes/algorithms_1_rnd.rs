@@ -1,12 +1,11 @@
-
 extern crate rand;
+use rand::distributions::{Alphanumeric, Distribution, Normal, Standard, Uniform};
+use rand::Rng;
 use std::fmt;
-use rand::{Rng};
-use rand::distributions::{Distribution, Normal, Uniform, Standard, Alphanumeric};
 
 #[allow(dead_code)]
 pub fn cook_1_random_numbers() {
-    println!("___cook_1_random_numbers", );
+    println!("___cook_1_random_numbers",);
 
     let mut rng = rand::thread_rng();
     let n1: u8 = rng.gen();
@@ -23,47 +22,50 @@ pub fn cook_2_random_numbers_within_range() {
     println!("___cook_2_random_numbers_within_range");
 
     println!("Integer: {}", rand::thread_rng().gen_range(0, 10));
-    println!("Float: {}", rand::thread_rng().gen_range(0., 1000.) );
+    println!("Float: {}", rand::thread_rng().gen_range(0., 1000.));
 }
 
-pub fn cook_2_random_bool(){
-    println!("___cook_2_random_bool", );
-    println!("Random bool: {}", rand::thread_rng().gen_bool(rand::thread_rng().gen::<f64>()));
+pub fn cook_2_random_bool() {
+    println!("___cook_2_random_bool",);
+    println!(
+        "Random bool: {}",
+        rand::thread_rng().gen_bool(rand::thread_rng().gen::<f64>())
+    );
 }
 
-pub fn cook_3_random_with_normal_distribution(){
-  println!("___cook_3_random_with_normal_distribution", );
-  
-  let mut rng = rand::thread_rng();
-  let normal = Normal::new(2.0, 3.0);
-  let v = normal.sample(&mut rng);
-  println!("{} is from a N(2, 9) distribution", v)
+pub fn cook_3_random_with_normal_distribution() {
+    println!("___cook_3_random_with_normal_distribution",);
+
+    let mut rng = rand::thread_rng();
+    let normal = Normal::new(2.0, 3.0);
+    let v = normal.sample(&mut rng);
+    println!("{} is from a N(2, 9) distribution", v)
 }
 
-pub fn cook_2_roll_the_dice(){
+pub fn cook_2_roll_the_dice() {
     println!("___cook_2_roll_the_dice");
-    
+
     let mut rng = rand::thread_rng();
     let die = Uniform::from(1..7);
-    
+
     loop {
         let throw = die.sample(&mut rng);
         println!("Roll the dice: {}", throw);
         if throw == 6 {
-            return
+            return;
         }
     }
 }
 
-pub fn cook_4_random_values_of_custom_tuple(){
-    println!("___cook_4_random_values_of_custom_tuple", );
+pub fn cook_4_random_values_of_custom_tuple() {
+    println!("___cook_4_random_values_of_custom_tuple",);
 
-    let mut  rng = rand::thread_rng();
+    let mut rng = rand::thread_rng();
     let tuple = rng.gen::<(i8, f32)>();
     println!("Here is a random tuple: ({}, {})", tuple.0, tuple.1);
 }
 
-pub fn cook_5_random_custom_type(){
+pub fn cook_5_random_custom_type() {
     println!("___cook_5_random_custom_type");
 
     #[derive(Debug)]
@@ -77,7 +79,7 @@ pub fn cook_5_random_custom_type(){
             let (rand_x, rand_y) = rng.gen();
             Point {
                 x: rand_x,
-                y: rand_y
+                y: rand_y,
             }
         }
     }
@@ -87,8 +89,8 @@ pub fn cook_5_random_custom_type(){
     println!("Random Point: {:?}", random_point);
 }
 
-pub fn cook_6_random_password_from_alfanum_characters(){
-    println!("___cook_6_random_password_from_alfanum_characters", );
+pub fn cook_6_random_password_from_alfanum_characters() {
+    println!("___cook_6_random_password_from_alfanum_characters",);
 
     let random_string: String = rand::thread_rng()
         .sample_iter(&Alphanumeric)
@@ -98,12 +100,12 @@ pub fn cook_6_random_password_from_alfanum_characters(){
     println!("Random string: {}", random_string);
 }
 
-pub fn cook_7_random_password_from_userdefined_characters(){
+pub fn cook_7_random_password_from_userdefined_characters() {
     println!("___cook_7_random_password_from_userdefined_characters");
 
     const CHARSET: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ\
-                             abcdefghijklmnopqrstuvwxyz\
-                             0123456789)(*&^%$#@!~";
+                            abcdefghijklmnopqrstuvwxyz\
+                            0123456789)(*&^%$#@!~";
 
     const PASSWORD_LEN: usize = 30;
     let mut rng = rand::thread_rng();
