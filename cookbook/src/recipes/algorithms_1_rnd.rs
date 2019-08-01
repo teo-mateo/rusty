@@ -1,7 +1,6 @@
 extern crate rand;
 use rand::distributions::{Alphanumeric, Distribution, Normal, Standard, Uniform};
 use rand::Rng;
-use std::fmt;
 
 #[allow(dead_code)]
 pub fn cook_1_random_numbers() {
